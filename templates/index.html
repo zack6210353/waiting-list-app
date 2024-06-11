@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NISHIKAWA WAITING LIST</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>NISHIKAWA WAITING LIST</h1>
+    <form action="/add" method="post">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="phone" placeholder="Phone Number" required>
+        <button type="submit">Add to Waiting List</button>
+    </form>
+    <h2>Current Waiting List</h2>
+    <ul>
+        {% for customer in waiting_list %}
+        <li>
+            {{ customer.name }} ({{ customer.phone }})
+            <a href="/notify/{{ loop.index0 }}">Notify</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
